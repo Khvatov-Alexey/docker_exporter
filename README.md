@@ -8,7 +8,7 @@ This app exports metrics about a Docker installation and any running containers 
 
 Given a Docker installation with default configuration (listening on Unix pipe):
 
-1. Start the exporter by executing `docker run --name docker_exporter --detach --restart always --volume "/var/run/docker.sock":"/var/run/docker.sock" --publish 9417:9417 prometheusnet/docker_exporter`
+1. Start the exporter by executing `docker run --name docker_exporter --detach --restart always --volume "/var/run/docker.sock:/var/run/docker.sock" --publish 9417:9417 prometheusnet/docker_exporter`
 1. Navigate to http://hostname:9417/metrics to explore the available metrics.
 1. Register `hostname:9417` in your Prometheus configuration as a scrape target.
 1. If using Grafana, [install the template dashboard](https://grafana.com/grafana/dashboards/11467)
@@ -52,7 +52,7 @@ If you enable the experimental features mode in Docker, [it does expose some ver
 
 To upgrade to a new version:
 
-1. Execute `docekr rm --force docker_exporter` to stop the existing instance.
+1. Execute `docker rm --force docker_exporter` to stop the existing instance.
 1. Execute `docker pull prometheusnet/docker_exporter` to download the new version.
 1. Execute the `docker run` command from the quick start to start the new version.
 
